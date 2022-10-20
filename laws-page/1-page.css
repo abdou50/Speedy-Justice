@@ -1,0 +1,88 @@
+
+html{
+    scroll-behavior: smooth;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Montserrat', sans-serif;
+}
+nav{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 5px solid #6f6f6f;
+}
+nav h1{
+    color: #717171;
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+}
+nav .onglets{
+    margin-top: 3px;
+    margin-left: 300px;
+}
+nav .onglets a{
+    text-decoration: none;
+    color: #000;
+    margin-right: 10px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 5px;
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url('https://i.ibb.co/4d8CYtM/background-header.jpg');
+    background-size: cover;
+    color: rgb(247, 235, 235);
+    padding: 70px;
+}
+header h1{
+    font-family: 'Playfair Display', serif;
+    font-size: 50px;
+}
+
+header button{
+    padding: 10px 20px;
+    background-color: rgb(247, 234, 234);
+    color:#000;
+    border:#000;
+	text-align: left;
+    margin-bottom: 30px;
+    outline:horizontal;
+    font-size: 20px;
+    font-family: 'playfair display', serif;
+    cursor: pointer;
+}
+footer{
+    margin-top: 00px;
+    border-top: 5px solid #2e1010;
+    background-color: rgb(10, 1, 1);
+    color: #fff;
+    padding: 30px 100px;;
+}
+footer h1{
+    font-family: 'Playfair Display', serif;
+    border-bottom: 1px solid white;
+    width: 20%;
+    padding-bottom: 5px;
+}
+footer .services{
+    margin-top: -10px;
+    display:flex;
+    flex-wrap:wrap;
+	color: #717171;
+}
+footer .services .service{
+    margin-right: 30px;
+	color: #717171;
+}
+footer .services .service p{
+    max-width: 300px;
+	color: #717171;
+}
+
+
