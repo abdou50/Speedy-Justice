@@ -13,13 +13,13 @@
 		<div class="title">
 			Login Form
 		</div>
-		<form action="#">
+		<form action="/login" method="post">
 			<div class="field">
-				<input type="text" required>
+				<input type="text" required name="email">
 				<label>Email Address</label>
 			</div>
 			<div class="field">
-				<input type="password" required>
+				<input type="password" required name="password">
 				<label>Password</label>
 			</div>
 			<div class="content">
@@ -32,10 +32,10 @@
 				</div>
 			</div>
 			<div class="field">
-				<a href="1-page.html" type="button">login</a>
+				<input type="submit" value="Login" a href="{{url_for('check')}}"></a>
 			</div>
 			<div class="signup-link">
-				Not a member? <a href="main.html">Signup now</a>
+				Not a member? <a href="{{ url_for('signup') }}">Signup now</a>
 			</div>
 		</form>
 	</div>
