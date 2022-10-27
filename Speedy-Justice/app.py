@@ -76,7 +76,7 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['_id']
-            return redirect(url_for('home'))
+            return render_template('check.html')
 
         flash(error)
 
@@ -91,6 +91,33 @@ def logout():
 @app.route('/check')
 def check():
     return redirect(url_for('check'))
+
+@app.route('/law')
+def law():
+	return render_template('law.html')
+
+
+
+@app.route('/av1')
+def av1():
+	return render_template('1-avocat.html')
+@app.route('/av2')
+def av2():
+	return render_template('2-avocat.html')
+@app.route('/av3')
+def av3():
+	return render_template('3-avocat.html')
+@app.route('/pers')
+def pers():
+	return render_template('personal-card.html')
+@app.route('/cri')
+def cri():
+	return render_template('criminal-card.html')
+@app.route('/lab')
+def lab():
+	return render_template('labour-card.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
