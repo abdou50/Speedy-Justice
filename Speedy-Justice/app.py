@@ -6,7 +6,8 @@ from datetime import datetime
 
 # init mongodb client
 
-db = MongoClient('mongodb+srv://aymensystem7:qhdwCZJI9yVruWFf@cluster0.w2w6pon.mongodb.net/?retryWrites=true&w=majority', connect=False)
+db = MongoClient(
+    'mongodb+srv://aymensystem7:qhdwCZJI9yVruWFf@cluster0.w2w6pon.mongodb.net/?retryWrites=true&w=majority', connect=False)
 # init database
 db = db['test-database']
 # init collection
@@ -15,6 +16,7 @@ atlas_pw = 'qhdwCZJI9yVruWFf'
 
 app = Flask(__name__)
 app.secret_key = 'secret123'
+
 
 def get_form_to_dict(form):
     print(form)
@@ -46,18 +48,23 @@ def signup():
             error = 'Username is required.'
         elif not dic["password"]:
             error = 'Password is required'
-        elif  found != None:
+        elif found != None:
             error = 'Email already in use'
 
         if error is None:
-                db.users.insert_one(dic)
-                print('user created')
-                return redirect(url_for('login'))
+            db.users.insert_one(dic)
+            print('user created')
+            return redirect(url_for('login'))
         else:
             return redirect(url_for('signup'))
 
     return render_template('signup.html', user=current_user)
-       
+
+
+@app.route('/check')
+def check():
+    return redirect(url_for('check'))
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -76,21 +83,19 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['_id']
-            return redirect(url_for('home'))
+            return redirect(url_for('check'))
 
         flash(error)
 
     return render_template('login.html', title='Login')
+
 
 @app.route('/logout')
 def logout():
     """Clear the current session, including the stored user id."""
     session.clear()
     return redirect(url_for('home'))
-@app.route
-@app.route('/check')
-def check():
-    return redirect(url_for('check'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
