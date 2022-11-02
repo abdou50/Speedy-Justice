@@ -17,6 +17,7 @@ app = Flask(__name__)
 app.secret_key = 'secret123'
 
 def get_form_to_dict(form):
+	#
     print(form)
     dic = {}
     if "_id" not in form:
@@ -32,11 +33,13 @@ def get_form_to_dict(form):
 @app.route('/')
 @app.route('/home')
 def home():
+	#function that make you go to the home page 
     return render_template('home.html', user=current_user)
 
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+	#function that take data from the form 
     if request.method == 'POST':
         dic = get_form_to_dict(request.form)
         print(dic.keys())
@@ -90,31 +93,39 @@ def logout():
 @app.route
 @app.route('/check')
 def check():
+	#function that take you to the check page
     return redirect(url_for('check'))
 
 @app.route('/law')
 def law():
+	#function that take you to the lawpage
 	return render_template('law.html')
 
 
 
 @app.route('/av1')
 def av1():
+	#function that take you to the lawyer
 	return render_template('1-avocat.html')
 @app.route('/av2')
 def av2():
+	#function that take you to the lqayer
 	return render_template('2-avocat.html')
 @app.route('/av3')
 def av3():
+	#function that take you to the layer
 	return render_template('3-avocat.html')
 @app.route('/pers')
 def pers():
+	#function that take you to the personal-card
 	return render_template('personal-card.html')
 @app.route('/cri')
 def cri():
+	#function that take you to the criminal card
 	return render_template('criminal-card.html')
 @app.route('/lab')
 def lab():
+	#function that take you to the labour card
 	return render_template('labour-card.html')
 
 
