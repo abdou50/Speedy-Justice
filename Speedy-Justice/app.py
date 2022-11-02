@@ -6,8 +6,7 @@ from datetime import datetime
 
 # init mongodb client
 
-db = MongoClient(
-    'mongodb+srv://aymensystem7:qhdwCZJI9yVruWFf@cluster0.w2w6pon.mongodb.net/?retryWrites=true&w=majority', connect=False)
+db = MongoClient('mongodb+srv://aymensystem7:qhdwCZJI9yVruWFf@cluster0.w2w6pon.mongodb.net/?retryWrites=true&w=majority', connect=False)
 # init database
 db = db['test-database']
 # init collection
@@ -17,8 +16,8 @@ atlas_pw = 'qhdwCZJI9yVruWFf'
 app = Flask(__name__)
 app.secret_key = 'secret123'
 
-
 def get_form_to_dict(form):
+	#
     print(form)
     dic = {}
     if "_id" not in form:
@@ -34,11 +33,13 @@ def get_form_to_dict(form):
 @app.route('/')
 @app.route('/home')
 def home():
+	#function that make you go to the home page 
     return render_template('home.html', user=current_user)
 
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+	#function that take data from the form 
     if request.method == 'POST':
         dic = get_form_to_dict(request.form)
         print(dic.keys())
@@ -48,23 +49,18 @@ def signup():
             error = 'Username is required.'
         elif not dic["password"]:
             error = 'Password is required'
-        elif found != None:
+        elif  found != None:
             error = 'Email already in use'
 
         if error is None:
-            db.users.insert_one(dic)
-            print('user created')
-            return redirect(url_for('login'))
+                db.users.insert_one(dic)
+                print('user created')
+                return redirect(url_for('login'))
         else:
             return redirect(url_for('signup'))
 
     return render_template('signup.html', user=current_user)
-
-
-@app.route('/check')
-def check():
-    return redirect(url_for('check'))
-
+       
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -83,18 +79,55 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['_id']
-            return redirect(url_for('check'))
+            return render_template('check.html')
 
         flash(error)
 
     return render_template('login.html', title='Login')
-
 
 @app.route('/logout')
 def logout():
     """Clear the current session, including the stored user id."""
     session.clear()
     return redirect(url_for('home'))
+@app.route
+@app.route('/check')
+def check():
+	#function that take you to the check page
+    return redirect(url_for('check'))
+
+@app.route('/law')
+def law():
+	#function that take you to the lawpage
+	return render_template('law.html')
+
+
+
+@app.route('/av1')
+def av1():
+	#function that take you to the lawyer
+	return render_template('1-avocat.html')
+@app.route('/av2')
+def av2():
+	#function that take you to the lqayer
+	return render_template('2-avocat.html')
+@app.route('/av3')
+def av3():
+	#function that take you to the layer
+	return render_template('3-avocat.html')
+@app.route('/pers')
+def pers():
+	#function that take you to the personal-card
+	return render_template('personal-card.html')
+@app.route('/cri')
+def cri():
+	#function that take you to the criminal card
+	return render_template('criminal-card.html')
+@app.route('/lab')
+def lab():
+	#function that take you to the labour card
+	return render_template('labour-card.html')
+
 
 
 if __name__ == '__main__':
